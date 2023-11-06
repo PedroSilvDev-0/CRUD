@@ -9,6 +9,14 @@ function onChangePassword() {
     togglePasswordErrors()
 }
 
+function login() {
+    window.location.href = "home.html"
+}
+
+function register() {
+    window.location.href = "register.html"
+}
+
 function isEmailValid() {
     const email = form.email().value;
     if (!email) {
