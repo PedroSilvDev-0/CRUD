@@ -10,35 +10,12 @@ form {
 }
 input, button {
     padding: 10px;
-    margin: 0px 0px 10px 0px;
     width: -webkit-fill-available;
 }
 button {
     cursor: pointer;
+    margin: 0px 0px 10px 0px;
 }
-button:active {
-    opacity: 0.8;
-}
-button[disabled] {
-    opacity: 0.8;
-}
-.clear {
-    background-color: transparent;
-    border: none;
-    color: white;
-}
-.solid {
-    background-color: white;
-    border: none;
-    color: rgb(45, 211, 111);
-}
-.outline {
-    background-color: transparent;
-    color: white;
-    border: 1px solid white;
-}
-.error {
-    color: white;
-    background-color: red;
-    display: none;
+.form-field {
+    margin-bottom: 10px;
 }
