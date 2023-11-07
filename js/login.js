@@ -10,9 +10,12 @@ function onChangePassword() {
 }
 
 function login() {
+    showLoading()
     firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
+        hideLoading()
         window.location.href = "home.html"
     }).catch(error => {
+        hideLoading()
         alert(getErrorMessage(error))
     })
 }
@@ -24,7 +27,8 @@ function getErrorMessage(error) {
 }
 
 function register() {
-    window.location.href = "register.html"
+    showLoading()
+    // window.location.href = "register.html"
 }
 
 function isEmailValid() {
