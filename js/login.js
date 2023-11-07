@@ -10,7 +10,17 @@ function onChangePassword() {
 }
 
 function login() {
-    window.location.href = "home.html"
+    firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
+        window.location.href = "home.html"
+    }).catch(error => {
+        alert(getErrorMessage(error))
+    })
+}
+
+function getErrorMessage(error) {
+    if (error.code == "auth/invalid-login-credentials") {
+        return "Usuário não encontrado."
+    }
 }
 
 function register() {
