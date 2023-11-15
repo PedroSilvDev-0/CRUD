@@ -24,19 +24,33 @@ function getErrorMessage(error) {
     if (error.code == "auth/invalid-login-credentials") {
         return "Usuário não encontrado."
     }
+    if (error.code == "auth/too-many-requests") {
+        return "Senha inválida."
+    }
+    return error.message
 }
 
 function register() {
+    window.location.href = "register.html"
+}
+
+function recoverPassword() {
     showLoading()
-    // window.location.href = "register.html"
+    firebase.auth().sendPasswordResetEmail(form.email().value).then(() => {
+        hideLoading()
+        alert('Email enviado com sucesso')
+    }).catch(error => {
+        hideLoading()
+        alert(getErrorMessage(error))
+    })
 }
 
 function isEmailValid() {
-    const email = form.email().value;
+    const email = form.email().value
     if (!email) {
         return false;
     }
-    return validateEmail(email);
+    return validateEmail(email)
 }
 
 function toggleEmailErrors() {
@@ -51,19 +65,19 @@ function togglePasswordErrors() {
 }
 
 function toggleButtonsDisable() {
-    const emailValid = isEmailValid();
-    form.recoverPassword().disabled = !emailValid;
+    const emailValid = isEmailValid()
+    form.recoverPassword().disabled = !emailValid
 
-    const passwordValid = isPasswordValid();
-    form.loginButton().disabled = !emailValid || !passwordValid;
+    const passwordValid = isPasswordValid()
+    form.loginButton().disabled = !emailValid || !passwordValid
 }
 
 function isPasswordValid() {
-    const password = form.password().value;
+    const password = form.password().value
     if (!password) {
-        return false;
+        return false
     }
-    return true;
+    return true
 }
 
 const form = {
