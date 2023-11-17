@@ -22,6 +22,10 @@ function onChangeConfirmPassword() {
     toggleRegisterButtonsDisable()
 }
 
+function login() {
+    window.location.href = "index.html"
+}
+
 function register() {
     showLoading()
 
