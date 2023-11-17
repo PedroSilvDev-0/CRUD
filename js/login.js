@@ -10,14 +10,16 @@ function onChangePassword() {
 }
 
 function login() {
-    showLoading()
-    firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value).then(response => {
-        hideLoading()
-        window.location.href = "home.html"
+    showLoading();
+    firebase.auth().signInWithEmailAndPassword(
+        form.email().value, form.password().value
+    ).then(() => {
+        hideLoading();
+        window.location.href = "home.html";
     }).catch(error => {
-        hideLoading()
-        alert(getErrorMessage(error))
-    })
+        hideLoading();
+        alert(getErrorMessage(error));
+    });
 }
 
 function getErrorMessage(error) {
@@ -53,6 +55,10 @@ function isEmailValid() {
     return validateEmail(email)
 }
 
+function isPasswordValid() {
+    return form.password().value ? true : false;
+}
+
 function toggleEmailErrors() {
     const email = form.email().value
     form.emailRequiredError().style.display = email ? "none" : "block"
@@ -70,14 +76,6 @@ function toggleButtonsDisable() {
 
     const passwordValid = isPasswordValid()
     form.loginButton().disabled = !emailValid || !passwordValid
-}
-
-function isPasswordValid() {
-    const password = form.password().value
-    if (!password) {
-        return false
-    }
-    return true
 }
 
 const form = {
