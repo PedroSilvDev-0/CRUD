@@ -22,6 +22,29 @@ function onChangeConfirmPassword() {
     toggleRegisterButtonsDisable()
 }
 
+function register() {
+    showLoading()
+
+    const email = form.email().value
+    const password = form.password().value
+    firebase.auth().createUserWithEmailAndPassword(
+        email, password
+    ).then(() => {
+        hideLoading() // esconder o componente de loading
+        window.location.href = "home.html"
+    }).catch(error => { // Se der error, vai capturar o error, esconder o loading e retornar o erro
+        hideLoading()
+        alert(getErrorMessage(error))
+    })
+}
+
+function getErrorMessage(error) {
+    if (error.code == "auth/email-already-in-use") {
+        return "Email já está em uso."
+    }
+    return error.message
+}
+
 function validatePasswordsMatch() {
     const password = form.password().value
     const confirmPassword = form.confirmPassword().value
